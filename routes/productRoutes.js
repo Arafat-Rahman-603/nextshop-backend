@@ -9,7 +9,7 @@ const router = express.Router();
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
-    folder: "nextshop_products",  
+    folder: "nextshop_products",
     allowed_formats: ["jpg", "jpeg", "png"],
   },
 });
@@ -17,9 +17,9 @@ const upload = multer({ storage });
 
 router.post("/", upload.single("image"), async (req, res) => {
   try {
-    const { name, description, price , image } = req.body;
+    const { name, description, price, image } = req.body;
 
-    const product = await Product.create({ name, description, price,  image });
+    const product = await Product.create({ name, description, price, image });
     res.json(product);
   } catch (error) {
     res.status(500).json({ error: error.message });
